@@ -3,19 +3,24 @@
 #
 # $ iex
 # iex> c "alorithms/FizzBuzz.ex"
-# iex> FizzBuzz.execute(15)
+# iex> FizzBuzz.print(15)
+# 1
+# 2
+# Fizz
+# ...
 #
 defmodule FizzBuzz do
-  def execute(numbers) do
-    Enum.each(1..numbers,
-      fn x -> 
-        case {rem(x, 3) == 0, rem(x, 5) == 0} do
-          {true, true} -> IO.puts "FizzBuzz"
-          {true, false} -> IO.puts "Fizz"
-          {false, true} -> IO.puts "Buzz"
-          {false, false} -> IO.puts x
-        end
-      end
-    )
+  def print(nth) do
+    Enum.each(1..nth, fn x -> IO.puts(say(x)) end)
   end
+
+  defp say(x) do
+    case {rem(x, 3) == 0, rem(x, 5) == 0} do
+      {true, true} -> "FizzBuzz"
+      {true, false} -> "Fizz"
+      {false, true} -> "Buzz"
+      {false, false} -> x
+    end
+  end
+
 end
